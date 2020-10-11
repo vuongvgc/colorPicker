@@ -9,6 +9,6 @@ function App() {
     </div>
   );
 }
-const color = ['blue', 'red', 'green'];
+const color = ['blue', 'red', 'green', 'pink'];
 const fontSize = 14 ;
 export default App;

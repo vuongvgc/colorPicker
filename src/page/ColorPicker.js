@@ -18,20 +18,19 @@ class ColorPicker extends React.Component {
         })
     }
     changeFontSize = (event) => {
-        if(this.state.fontSize < 10) {
+        let newFs =  event.target.value === 'increase' ? this.state.fontSize + 1 : this.state.fontSize - 1
+        if(newFs < 10){
             this.setState({
                 fontSize: 10
             })
-
-        }else if(9 <= this.state.fontSize && this.state.fontSize <= 29) {
-            this.setState({
-                fontSize: event.target.value === 'increase' ? this.state.fontSize + 1 : this.state.fontSize - 1
-            })
-        }else if(this.state.fontSize > 30) {
+        }else if(newFs > 30){
             this.setState({
                 fontSize: 30
             })
-
+        }else {
+            this.setState({
+                fontSize: newFs
+            })
         }
     }
     render(){
