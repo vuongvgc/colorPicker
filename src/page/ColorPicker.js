@@ -17,6 +17,23 @@ class ColorPicker extends React.Component {
             colorCurrent: value
         })
     }
+    changeFontSize = (event) => {
+        if(this.state.fontSize < 10) {
+            this.setState({
+                fontSize: 10
+            })
+
+        }else if(9 <= this.state.fontSize && this.state.fontSize <= 29) {
+            this.setState({
+                fontSize: event.target.value === 'increase' ? this.state.fontSize + 1 : this.state.fontSize - 1
+            })
+        }else if(this.state.fontSize > 30) {
+            this.setState({
+                fontSize: 30
+            })
+
+        }
+    }
     render(){
         const color = this.state.colorList;
         const colorCurrent = this.state.colorCurrent;
@@ -31,7 +48,7 @@ class ColorPicker extends React.Component {
                         <ChooseColor colorList={color} changeColorCurrent={this.changeColor} />
                     </div>
                     <div className="col-6">
-                        <ChooseSize fontSize={fs}/>
+                        <ChooseSize fontSize={fs} changeFs ={this.changeFontSize}/>
                     </div>
                 </div>
                 <button className="btn btn-info">Reset</button>
