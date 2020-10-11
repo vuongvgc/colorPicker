@@ -1,29 +1,32 @@
 import React from 'react';
-class ChooseColor extends React.Component {
-    render(){
-        return(
-            <div className="container border border-primary p-0">
-                <div className="container-fluid alert alert-primary">
-                    <h3>Choose Color</h3>
-                </div>
-                <div className="container p-3">
-                    <div className="row">
-                        <div className="col-1 bg-danger mr-2">
-                            1
-                        </div>
-                        <div className="col-1 bg-warning  mr-2">
-                            2
-                        </div>
-                        <div className="col-1 bg-info  mr-2">
-                            3
-                        </div>
-                        <div className="col-1 bg-secondary  mr-2">
-                            4
-                        </div>
-                    </div>
+function ColorItem(props) {
+    const styleButton = {
+        width: '60px',
+        height: '60px',
+        textAlign: 'center',
+        backgroundColor: props.color
+    }
+    return(
+        <div className="col-2 mr-2">
+            <button style={styleButton} value={props.color} onClick={() => props.changeColor(props.color)}></button>
+        </div>
+    )
+}
+function ChooseColor(props) {
+    const renderColor = props.colorList.map((el, index) => 
+        <ColorItem changeColor={(b) => props.changeColorCurrent(b)} color={el} key={index}/>
+    )
+    return(
+        <div className="container border border-primary p-0">
+            <div className="container-fluid alert alert-primary">
+                <h3>Choose Color</h3>
+            </div>
+            <div className="container p-3">
+                <div className="row">
+                    {renderColor}
                 </div>
             </div>
-        )
-    }
+        </div>
+    )
 }
 export default ChooseColor;
